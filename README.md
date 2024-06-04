@@ -5,7 +5,7 @@ spring.datasource.username=stargazer
 spring.datasource.password=P@ssw0rd
 ```
 起始資料SQL Server指令如附檔   
-找到並執行 `DemoForum/src/main/java/com/joyfulgarden/JoyfulGardenSpringBootProjectApplication.java`
+找到並執行 `DemoForum/src/main/java/com/joyfulgarden/JoyfulGardenSpringBootProjectApplication.java`  
 專案進入點：http://localhost:8085/allPosts-google.html  
 
 ## 環境
