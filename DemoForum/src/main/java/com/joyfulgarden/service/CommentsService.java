@@ -17,7 +17,7 @@ public class CommentsService {
 	@Autowired
 	private CommentsRepository comRepos;
 	
-	// 新增
+	//新增
 	public Comments insert(Comments comments) {
 		return comRepos.save(comments);
 	}
@@ -27,7 +27,7 @@ public class CommentsService {
 		return comRepos.save(comments);
 	}
 	
-	// 刪除
+	//刪除
 	public void deleteById(Integer replyID) {
 		comRepos.deleteById(replyID);
 	}

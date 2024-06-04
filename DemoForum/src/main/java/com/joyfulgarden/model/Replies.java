@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 @SuppressWarnings("deprecation")
 @Entity
 @Table(name = "REPLIES")
-@SQLDelete(sql = "UPDATE REPLIES SET isDeleted = 1 WHERE REPLYID = ?") //@SQLDelete註解用來覆寫delete指令，每次我們執行delete指令時，我們會將其轉換成清單3.1.2中的UPDATE語句，這條指令將isDeleted欄位改為true，而不是永久刪除資料。
+@SQLDelete(sql = "UPDATE REPLIES SET isDeleted = 1 WHERE REPLYID = ?")
 @Where(clause = "isDeleted = false")
 public class Replies {
 
@@ -50,13 +50,13 @@ public class Replies {
 	private boolean isDeleted = Boolean.FALSE;
 	
 	//@JsonIgnoreProperties({ "" })
-	@JsonIgnore //但我不知道為何要加這行
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "AUTHORNICKNAME", referencedColumnName = "FNICKNAME" , insertable = false, updatable = false)
 	private Forummembers forummembers;
 	
 	//@JsonIgnoreProperties({ "" })
-	@JsonIgnore //但我不知道為何要加這行
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "POSTID", insertable = false, updatable = false)
 	private Posts posts;
@@ -151,9 +151,6 @@ public class Replies {
 	public void setForummembers(Forummembers forummembers) {
 		this.forummembers = forummembers;
 	}
-	
-	
-	
 	
 	
 	

@@ -26,20 +26,20 @@ public class RepliesController {
 	@Autowired
 	private RepliesService repliesService;
 	
-	// 刪除
+	//刪除
 	@DeleteMapping("/forum/replies/{replyID}")
 	public String doDeletetReplies(@PathVariable(name = "replyID") Integer replyID) {;
 	repliesService.deleteById(replyID);
 		return "已刪除回覆";
 	}
 	
-	// 找單一
+	//找單一
 	@GetMapping("/forum/replies/{replyID}")
 	public Replies doRepliesByID(@PathVariable(name = "replyID")Integer replyID) {
 		return repliesService.findById(replyID);
 	}
 	
-	// 找全o
+	//找全o
 	@GetMapping("/forum/replies")
 	public List<Replies> doAllPosts() {
 		return repliesService.findAllReplies();
@@ -51,7 +51,7 @@ public class RepliesController {
 		return repliesService.findAllRepliesByPostsID(postID);
 	}
 	
-	// 作者查全
+	//作者查全
 	@GetMapping("/forum/repliesDesc/{authorNickname}")
 	public List<Replies> doAllRepliesByAuthorNicknameDesc(@PathVariable(name = "authorNickname")String authorNickname) {
 		return repliesService.findAllRepliesByAuthorNicknameOrderByReplyIDDesc(authorNickname);
@@ -59,14 +59,14 @@ public class RepliesController {
 	
 	
 	
-	// 新增o
+	//新增o
 	@PostMapping("/forum/post={postID}/replies")
 	public Replies doInsertReplies(@PathVariable(name = "postID") Integer postID,
 									@RequestBody Replies reply) {
 		Replies nreplies = new Replies();
 		nreplies.setReplyContent(reply.getReplyContent());
 		nreplies.setAuthorNickname(reply.getAuthorNickname());
-		//nreplies.setSboardID(replies.getSboardID());// 有fk所以不能輸入不存在之sboardID
+		//nreplies.setSboardID(replies.getSboardID()); //有fk所以不能輸入不存在之sboardID
 		nreplies.setPostID(postID);
 		nreplies.setLikesCount(reply.getLikesCount());
 		nreplies.setReplyTime(LocalDateTime.now());
@@ -76,7 +76,7 @@ public class RepliesController {
 		//return postsService.insert(npost);
 	}
 	
-	// 修改o
+	//修改o
 	@PutMapping("/forum/post={postID}/replies/{replyID}")  //某某使修改某某使用者的文
 	public Replies doUpdateReplies(/*@PathVariable(name = "postID") Integer postID,*/
 									@PathVariable(name = "replyID") Integer replyID, 
@@ -85,7 +85,7 @@ public class RepliesController {
 		ureplies.setReplyContent(reply.getReplyContent());
 		//ureplies.setMembers(members);
 		//ureplies.setAuthorNickname(reply.getAuthorNickname());
-		//ureplies.setSboards(replies.getSboards());// 有fk所以不能輸入不存在之sboardID
+		//ureplies.setSboards(replies.getSboards()); //有fk所以不能輸入不存在之sboardID
 		ureplies.setLikesCount(reply.getLikesCount());
 		//ureplies.setReplyTime(reply.getReplyTime());
 		//ureplies.setDeleted(true);

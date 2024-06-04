@@ -24,8 +24,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "POSTS")
 @Component
-@SQLDelete(sql = "UPDATE POSTS SET isDeleted = 1 WHERE POSTID = ?") //@SQLDelete註解用來覆寫delete指令，每次我們執行delete指令時，我們會將其轉換成清單3.1.2中的UPDATE語句，這條指令將isDeleted欄位改為true，而不是永久刪除資料。
-@Where(clause = "isDeleted = false") //@where註解將會提供一個過濾器，當我們需要讀取Product資料時，結果中不會包含is_deleted = true的資料。在資料庫中false是0，true是1，但回傳是false和true
+@SQLDelete(sql = "UPDATE POSTS SET isDeleted = 1 WHERE POSTID = ?") //@SQLDelete註解用來覆寫delete指令，每次執行delete指令時，會將其轉換成UPDATE語句，這條指令將isDeleted欄位改為true，而不是永久刪除資料。
+@Where(clause = "isDeleted = false") //@where註解提供一個過濾器，當我們需要讀取資料時，結果中不會包含is_deleted = true的資料。在資料庫中false是0，true是1，但回傳是false和true
 public class Posts {
 	
 	@Id
@@ -56,14 +56,14 @@ public class Posts {
 	
 	
 	//@JsonIgnoreProperties({ "" })
-	@JsonIgnore //但我不知道為何要加這行
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "AUTHORNICKNAME", referencedColumnName = "FNICKNAME" , insertable = false, updatable = false)
 	private Forummembers forummembers;
 
 	
 	//@JsonIgnoreProperties({ "" })
-	@JsonIgnore //但我不知道為何要加這行
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "SBOARDID", insertable = false, updatable = false) //加了這行就能和sboardID實例共存
 	private Sboards sboards;

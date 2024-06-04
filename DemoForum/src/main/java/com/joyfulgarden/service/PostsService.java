@@ -20,9 +20,6 @@ public class PostsService {
 	@Autowired
 	private PostsRepository poRepos;
 	
-//	@Autowired
-//	private MembersRepository memRepos; 
-	
 	//新增Ppsto
 	public Posts insert(Posts post) {
 		return poRepos.save(post);
@@ -33,7 +30,7 @@ public class PostsService {
 		return poRepos.save(post);
 	}
 	
-	// 刪除
+	//刪除
 	public void deleteById(Integer postID) {
 		poRepos.deleteById(postID);
 	}
@@ -62,31 +59,28 @@ public class PostsService {
 		return poRepos.findAllOrderByLastActivityDesc();
 	};
 	
-	// 找by sboardID
+	//找by sboardID
 	public List<Posts> findAllPostsBySboardID(Integer sboardID) {
 		return poRepos.findBySboardID(sboardID);
 		
 	}
 	
-	// 作者查全
+	//作者查全
 	public List<Posts> findAllPostsByAuthorNicknameOrderByPostIDDesc(String authorNickname) {
 		return poRepos.findByAuthorNicknameOrderByPostIDDesc(authorNickname);
 	}
 	
-	// 找by sboardID 由新到舊
+	//找by sboardID 由新到舊
 	public List<Posts> findAllPostsBySboardIDOrderByPostIDDesc(Integer sboardID) {
 		return poRepos.findBySboardIDOrderByPostIDDesc(sboardID);
 			
 	}
 	
-	// 關鍵字模糊搜尋
+	//關鍵字模糊搜尋
 	public List<Posts> findAllByKeywords(String keyword) {
 		return poRepos.findByKeywords(keyword);
 	}
 
-//	public List<Posts> findByMemberName(String memberName) {
-//		return poRepos.findByMembers_MemberName(memberName);
-//	}
 	
 	
 }

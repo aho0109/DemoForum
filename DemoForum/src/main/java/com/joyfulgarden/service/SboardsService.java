@@ -17,22 +17,22 @@ public class SboardsService {
 	@Autowired
 	private SboardsRepository sbRepos;
 	
-	// 找全
+	//找全
 	public List<Sboards> findAllSBoards() {
 		return sbRepos.findAll();
 	}
 	
-	// 新增
+	//新增
 	public Sboards insert(Sboards sboards) {
 		return sbRepos.save(sboards);
 	}
 	
-	// 修改
+	//修改
 	public Sboards update(Sboards sboards) {
 		return sbRepos.save(sboards);
 	}
 	
-	// 刪除
+	//刪除
 	public void deleteById(Integer sboardID) {
 		sbRepos.deleteById(sboardID);
 	}

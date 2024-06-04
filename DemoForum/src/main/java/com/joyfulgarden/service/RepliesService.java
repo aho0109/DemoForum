@@ -31,7 +31,7 @@ public class RepliesService {
 		return repRepos.save(replies);
 	}
 	
-	// 刪除
+	//刪除
 	public void deleteById(Integer replyID) {
 		repRepos.deleteById(replyID);
 	}
@@ -55,7 +55,7 @@ public class RepliesService {
 		return repRepos.findByPostID(postID);
 	}
 	
-	// 作者查全
+	//作者查全
 	public List<Replies> findAllRepliesByAuthorNicknameOrderByReplyIDDesc(String authorNickname) {
 		return repRepos.findAllRepliesByAuthorNicknameOrderByReplyIDDesc(authorNickname);
 	}

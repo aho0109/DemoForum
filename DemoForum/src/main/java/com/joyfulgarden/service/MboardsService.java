@@ -28,7 +28,7 @@ public class MboardsService {
 		return mbRepos.findAll();
 	}
 	
-	// 新增
+	//新增
 	public Mboards insert(Mboards mboards) {
 		return mbRepos.save(mboards);
 	}

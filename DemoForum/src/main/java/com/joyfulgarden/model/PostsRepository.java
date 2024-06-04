@@ -8,12 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface PostsRepository extends JpaRepository<Posts, Integer> {
-	
-	//內建 查全 新增o 修改o
-	
-	// 查全由新到舊
+		
+	//查全由新到舊
 	public List<Posts> findAllByOrderByPostIDDesc();
-	
 	
 	//查bymembernameo
 	//public List<Posts> findByMembers_MemberName(String memberName);
@@ -21,14 +18,14 @@ public interface PostsRepository extends JpaRepository<Posts, Integer> {
 	//查全by sboardID
 	public List<Posts> findBySboardID(Integer sboardID);
 	
-	// 作者查全
+	//作者查全
 	public List<Posts> findByAuthorNicknameOrderByPostIDDesc(String authorNickname);
 	
 	//查全by sboardID由新到舊
 	public List<Posts> findBySboardIDOrderByPostIDDesc(Integer sboardID);
 	
-	// 最新動態排列
-	// 使用 MAX(REPLYTIME) AS LastActivityTime 和 MAX(COMMENTTIME) AS LastActivityTime，這樣合成的暫時表中就會有一個名為 LastActivityTime 的欄位。然後，我們在主查詢中使用這個合成的欄位名稱來排序。
+	//最新動態排列
+	//使用 MAX(REPLYTIME) AS LastActivityTime 和 MAX(COMMENTTIME) AS LastActivityTime，這樣合成的暫時表中就會有一個名為 LastActivityTime 的欄位。然後，在主查詢中使用這個合成的欄位名稱來排序。
 	@Query(value = "SELECT p.* " +
             "FROM Posts p " +
             "LEFT JOIN (SELECT POSTID, MAX(LastActivityTime) AS LastActivityTime " +
@@ -47,8 +44,8 @@ public interface PostsRepository extends JpaRepository<Posts, Integer> {
 	public List<Posts> findByPostContentContaining(String xxxcontent);
 	
 	 
-	// 關鍵字模糊搜尋
-	// (已解決)bug:文章刪了但 回覆沒刪或留言沒刪 找的時候還是會跑出來 點進去就消失
+	//關鍵字模糊搜尋
+	//(已解決)bug:文章刪了但 回覆沒刪或留言沒刪 找的時候還是會跑出來 點進去就消失
 	@Query(value = "SELECT p.postID AS postID, p.postTitle AS postTitle, p.postContent AS postContent, " +
             "p.authorNickname AS authorNickname, p.sboardID AS sboardID, p.likesCount AS likesCount, " +
             "p.postTime AS postTime, p.isDeleted AS isDeleted " +
@@ -62,7 +59,7 @@ public interface PostsRepository extends JpaRepository<Posts, Integer> {
 	List<Posts> findByKeywords(@Param("keyword") String keyword);
 	
 	
-	// 沒用到
+	//沒用到
 	@Query(value = "SELECT p.postID AS postID, p.postTitle AS postTitle, p.postContent AS postContent, " +
             "p.authorNickname AS authorNickname, p.sboardID AS sboardID, p.likesCount AS likesCount, " +
             "p.postTime AS postTime, p.isDeleted AS isDeleted " +

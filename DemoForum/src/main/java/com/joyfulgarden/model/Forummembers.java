@@ -46,15 +46,14 @@ public class Forummembers {
 	
 	public Forummembers() {}
 	
-	// 增加一個方法用於根據 forummemberID 獲取對應的 nickname
+	//根據forummemberID獲取對應的nickname
     public String getNicknameByForummemberID(Integer forummemberID) {
-        // 遍歷所有的 forummembers，找到對應的 forummemberID，返回其 nickname
+        //遍歷所有的forummembers，找到對應的forummemberID，返回其nickname
         for (Replies reply : replies) {
             if (reply.getForummembers().getForummemberID().equals(forummemberID)) {
                 return reply.getForummembers().getFnickname();
             }
         }
-        // 如果找不到對應的 forummemberID，返回 null 或者 throw Exception，視情況而定
         return null;
     }
 	
@@ -91,13 +90,6 @@ public class Forummembers {
 		this.posts = posts;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

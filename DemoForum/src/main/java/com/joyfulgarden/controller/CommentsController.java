@@ -23,33 +23,33 @@ public class CommentsController {
 	@Autowired
 	private CommentsService commentsService;
 	
-	// 刪除
+	//刪除
 	@DeleteMapping("/forum/postandreply/comments/{commentID}")
 	public String doDeletetComments(@PathVariable(name = "commentID") Integer commentID) {;
 		commentsService.deleteById(commentID);
 		return "已刪除留言";
 	}
 	
-	// 找單一
+	//找單一
 	@GetMapping("/forum/postandreply/comments/{commentID}")
 	public Comments doCommentsByID(@PathVariable(name = "commentID")Integer  commentID) {
 		return commentsService.findById(commentID);
 	}
 	
-	// 找全by postID
+	//找全by postID
 	@GetMapping("/forum/postandreply/comments")
 	public List<Comments> doAllCommentsByPost(String targetType, Integer postID, Integer replyID) {
 		return commentsService.findByTargetTypeAndID(targetType, postID, replyID);
 		//return commentsService.findByTargetTypeAndID("Posts", 1, null);
 	}
 	
-	// 作者查全
+	//作者查全
 	@GetMapping("/forum/postandreplyDesc/{authorNickname}")
 	public List<Comments> doAllCommentsByAuthorNicknameDesc(@PathVariable(name = "authorNickname")String authorNickname) {
 		return commentsService.findAllCommentsByAuthorNicknameOrderByCommentIDDesc(authorNickname);
 	}
 	
-	// 新增
+	//新增
 	@PostMapping("/forum/postandreply/comments")
 	public Comments doInsertComments(@RequestBody Comments comments) {
 		Comments ncomments = new Comments();
@@ -91,7 +91,7 @@ public class CommentsController {
 	}
 	
 	
-//	// 找全by replyID
+//	//找全by replyID
 //	@GetMapping("/forum/postreply/comments")
 //	public List<Comments> doAllCommentsByReply(String targetType, Integer replyID) {
 //		return commentsService.findByTargetTypeAndReplyID(targetType, replyID);

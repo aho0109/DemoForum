@@ -23,19 +23,19 @@ public class SBoardsController {
 	@Autowired
 	private SboardsService sboardsService;
 	
-	// 找全
+	//找全
 	@GetMapping("/forum/sboards/all")
 	public List<Sboards> doAllSBoards() {
 		return sboardsService.findAllSBoards();
 	}
 	
-	// 找單一
+	//找單一
 	@GetMapping("/forum/sboards/{sboardID}")
 	public Sboards doPostsByID(@PathVariable(name = "sboardID")Integer sboardID) {
 		return sboardsService.findById(sboardID);
 	}
 	
-	// 新增
+	//新增
 	@SuppressWarnings("deprecation")
 	@PostMapping("/forum/sboards")
 	public Sboards doInsertSBoards(/*@PathVariable(name ="mboardID") Integer mboardID,*/ @RequestBody Sboards sboards) {
@@ -50,7 +50,7 @@ public class SBoardsController {
 		return nsBoards;
 	}
 	
-	// 修改
+	//修改
 	@PutMapping("/forum/posts/update/{postID}")
 	public Sboards doUpdatePosts(@PathVariable(name = "") Integer mboardID, @RequestBody Sboards sboards) {
 		Sboards upost = sboardsService.findById(mboardID);

@@ -31,32 +31,32 @@ public class PostsController {
 //	@Autowired
 //    private RecommendationService recommendationService;
 	
-	// 刪除
+	//刪除
 	@DeleteMapping("/forum/posts/{postID}")
 	public String doDeletetReplies(@PathVariable(name = "postID") Integer postID) {;
 		postsService.deleteById(postID);
 		return "已刪除文章";
 	}
 	
-	// 找單一
+	//找單一
 	@GetMapping("/forum/posts/{postID}")
 	public Posts doPostsByID(@PathVariable(name = "postID")Integer postID) {
 		return postsService.findById(postID);
 	}
 	
-	// 找全by sboardID
+	//找全by sboardID
 	@GetMapping("/forum/sboard={sboardID}/posts")
 	public List<Posts> doAllPostsBySboardID(@PathVariable(name = "sboardID") Integer sboardID) {
 		return postsService.findAllPostsBySboardID(sboardID);
 	}
 	
-	// 找全by sboardID 由新到舊
+	//找全by sboardID 由新到舊
 	@GetMapping("/forum/sboard={sboardID}/postsDesc")
 	public List<Posts> doAllPostsBySboardIDOrderByPostIDDesc(@PathVariable(name = "sboardID") Integer sboardID) {
 		return postsService.findAllPostsBySboardIDOrderByPostIDDesc(sboardID);
 	}
 	
-	// 找全o
+	//找全o
 	@GetMapping("/forum/posts")
 	public List<Posts> doAllPosts() {
 		return postsService.findAllPosts();
@@ -74,7 +74,7 @@ public class PostsController {
 		return postsService.findAllByLastActivityDesc();
 	}
 	
-	// 作者查全
+	//作者查全
 	@GetMapping("/forum/postsDesc/{authorNickname}")
 	public List<Posts> doAllPostsByAuthorNicknameDesc(@PathVariable(name = "authorNickname")String authorNickname) {
 		return postsService.findAllPostsByAuthorNicknameOrderByPostIDDesc(authorNickname);
@@ -82,13 +82,13 @@ public class PostsController {
 	
 	
 	
-	// 關鍵字模糊搜尋
+	//關鍵字模糊搜尋
 	@GetMapping("/forum/search/{keyword}")
 	public List<Posts> doKeywordSearch(@PathVariable String keyword) {
 		return postsService.findAllByKeywords(keyword);
 	}
 	
-	// 新增o
+	//新增o
 	@PostMapping("/forum/posts")
 	public Posts doInsertPosts(/*@PathVariable(name = "sboardID") Integer sboardID,*/
 									@RequestBody Posts post) {
@@ -97,7 +97,7 @@ public class PostsController {
 		npost.setPostContent(post.getPostContent());
 		//npost.setForummembers(post.getForummembers());
 		npost.setAuthorNickname(post.getAuthorNickname());
-		npost.setSboardID(post.getSboardID());// 有fk所以不能輸入不存在之sboardID
+		npost.setSboardID(post.getSboardID()); //有fk所以不能輸入不存在之sboardID
 		//npost.setSboardID(sboardID);
 		npost.setLikesCount(post.getLikesCount());
 		npost.setPostTime(LocalDateTime.now());
@@ -115,7 +115,7 @@ public class PostsController {
 		upost.setPostContent(post.getPostContent());
 		//upost.setMembers(members);
 		//upost.setAuthorNickname(post.getAuthorNickname());
-		upost.setSboardID(post.getSboardID());// 有fk所以不能輸入不存在之sboardID
+		upost.setSboardID(post.getSboardID()); //有fk所以不能輸入不存在之sboardID
 		upost.setLikesCount(post.getLikesCount());
 		upost.setPostTime(post.getPostTime());
 		//npost.setDeleted(true);
@@ -123,20 +123,20 @@ public class PostsController {
 		return upost;		
 	}
 	
-//	// 推薦文章
+//	//推薦文章
 //    @GetMapping("/forum/posts/{postID}/recommendations")
 //    public List<Posts> doGetRecommendedPosts(@PathVariable(name = "postID") Integer postID) {
 //    	try {
-//            // 首先獲取目前所在的 post
+//            //首先獲取目前所在的 post
 //            Posts currentPost = postsService.findById(postID);
-//            // 假設你已經能夠獲取到目前所在的 post 的所有回覆
+//            //假設已經能夠獲取到目前所在的post的所有回覆
 //            List<Replies> replies = repliesService.findAllRepliesByPostsID(postID);
-//            // 再根據目前所在的 post 和其所屬的 replies 生成推薦的 posts
+//            //再根據目前所在的post和其所屬的replies生成推薦的posts
 //            List<Posts> recommendedPosts = recommendationService.generateRecommendations(currentPost, replies);
 //            return recommendedPosts;
 //        } catch (Exception e) {
 //            e.printStackTrace();
-//            // 返回空列表或者錯誤訊息，視情況而定
+//            //返回空列表或者錯誤訊息，視情況而定
 //            return null;
 //        }
 //    }

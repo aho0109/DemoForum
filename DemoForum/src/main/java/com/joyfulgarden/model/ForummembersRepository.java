@@ -6,7 +6,6 @@ public interface ForummembersRepository extends JpaRepository<Forummembers, Inte
 
 	Forummembers findByFnickname(String fnickname);
 
-	
 	Forummembers  findFnicknameByForummemberID(Integer forummemberID);
 
 }
