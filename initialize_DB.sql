@@ -1,6 +1,7 @@
-use Joyful_Garden_forum;
+DROP DATABASE IF EXISTS Joyful_Garden_forum;
+CREATE DATABASE Joyful_Garden_forum;
 
-use Joyful_Garden
+use Joyful_Garden_forum;
 
 create table Forummembers(
 	forummemberID int not null identity(1,1),
@@ -13,48 +14,8 @@ insert into Forummembers(fnickname, fpassword, role) values('Kakaru', 123, 'fuse
 insert into Forummembers(fnickname, fpassword, role) values('Mago', 123, 'fuser');
 insert into Forummembers(fnickname, fpassword, role) values('Yoro', 123, 'fuser');
 insert into Forummembers(fnickname, fpassword, role) values('GodEater', 123, 'fadmin');
-
-
 select * from Forummembers;
-drop table Forummembers;
 
-/*
-create table FMembers(
-	fmembersID int not null primary key identity(1,1),
-	nickname nvarchar(50) not null,
-	create_time timestamp);
-select * from FMembers;
-insert into FMembers(temp_memberID, nickname) values(1, 'cammy');
-insert into FMembers(temp_memberID, nickname) values(2, 'rashid');
-insert into FMembers(temp_memberID, nickname) values(3, 'jp');
-insert into FMembers(temp_memberID, nickname) values(4, 'juri');
-insert into FMembers(temp_memberID, nickname) values(5, 'monster');
-
-drop table FMembers;
-*/
-
-/*
-create table FMembers(
-	fmembersID int,
-	nickname nvarchar(50),
-	create_time timestamp);
-select * from FMembers;
-insert into FMembers(nickname) values(snake121);
-drop table FMembers;
-
--- ³Ð«Ø¤@­ÓÄ²µo¾¹¡A·í¦b TempMembers ´¡¤J·s¸ê®Æ®ÉÄ²µo
-CREATE TRIGGER trg_AfterInsertTempMembers
-ON TempMembers
-AFTER INSERT
-AS
-BEGIN
-    -- ´¡¤J·s¸ê®Æ¨ì FMembers ¤¤
-    INSERT INTO FMembers (fmembersID)
-    SELECT temp_memberID
-    FROM inserted;
-END;
-drop TRIGGER trg_AfterInsertTempMembers;
-*/
 
 create table Mboards(
 	mboardID int not null primary key identity(1,1), 
@@ -66,10 +27,7 @@ insert into Mboards(mboardTitle, mbulletin, isDeleted) values('½Òµ{°Q½×', '¥DªOª
 insert into Mboards(mboardTitle, mbulletin, isDeleted) values('­Ó¤H§@«~¤À¨É', '¥DªOªO³W:½Ð°Q½×§@«~', 0);
 insert into Mboards(mboardTitle, mbulletin, isDeleted) values('¬¡°Ê®iÄý', '¥DªOªO³W:½Ð°Q½×®iÄý', 0);
 insert into Mboards(mboardTitle, mbulletin, isDeleted) values('¥æ¬y°Q½×', '¥DªOªO³W:½Ð°Q½×°Q½×', 0);
-
 select * from Mboards;
-drop table Mboards;
-
 
 
 create table Sboards(
@@ -87,10 +45,7 @@ insert into Sboards(sboardTitle, sbulletin, mboardID, isDeleted) values('­Ó¤H«Å¶
 insert into Sboards(sboardTitle, sbulletin, mboardID, isDeleted) values('¼t°Ó«Å¶Ç', '¤lªO¤½§i:¶È­­¼t°Ó«Å¶Ç', 3, 0);
 insert into Sboards(sboardTitle, sbulletin, mboardID, isDeleted) values('®âºØ¬ÛÃö', '¤lªO¤½§i:¦UºØºØ´ÓºÃÃøÂø¯g', 4, 0);
 insert into Sboards(sboardTitle, sbulletin, mboardID, isDeleted) values('¤u¨ã¬ÛÃö', '¤lªO¤½§i:¦UºØ¤u¨ã¶}½c¤À¨É', 4, 0);
-
 select * from Sboards;
-drop table Sboards;
-
 
 
 create table Posts(
@@ -132,11 +87,7 @@ insert into Posts(postTitle, postContent, authorNickname, sboardID, likesCount, 
 insert into Posts(postTitle, postContent, authorNickname, sboardID, likesCount, isDeleted) values('¥u¦³OilKing¬Ýªº¨ì¤~¹ï', '<p>¥u¦³OilKing¬Ýªº¨ì¤~¹ï<p>', 'OilKing', 8, 84, 0);
 insert into Posts(postTitle, postContent, authorNickname, sboardID, likesCount, isDeleted) values('¥u¦³Kakaru¬Ýªº¨ì¤~¹ï', '<p>¥u¦³Kakaru¬Ýªº¨ì¤~¹ï<p>', 'Kakaru', 8, 84, 0);
 insert into Posts(postTitle, postContent, authorNickname, sboardID, likesCount, isDeleted) values('¥u¦³Mago¬Ýªº¨ì¤~¹ï', '<p>¥u¦³Mago¬Ýªº¨ì¤~¹ï<p>', 'Mago', 8, 84, 0);
-
-
 select * from Posts;
-
-drop table Posts;
 
 
 create table Replies(
@@ -172,11 +123,7 @@ insert into Replies(replyContent, authorNickname, postID, likesCount, isDeleted)
 insert into Replies(replyContent, authorNickname, postID, likesCount, isDeleted) values('<p>¯u»\¯S¾÷¾¹¤H<p>', 'Mago', 10, 99, 0);
 
 insert into Replies(replyContent, authorNickname, postID, likesCount, isDeleted) values('<p>Yoroµoªíªº¦^ÂÐ<p>', 'Yoro', 10, 99, 0);
-
-
 select * from Replies;
-drop table Replies;
-
 
 
 create table Comments(
@@ -231,14 +178,38 @@ insert into Comments(commentContent, authorNickname, targetType, postID, replyID
 insert into Comments(commentContent, authorNickname, targetType, postID, replyID, likesCount, isDeleted) values('³o¬O¹ï¦^ÂÐ¤þªº¯d¨¥', 'Yoro', 'Replies', null, 19, 10, 0);
 
 insert into Comments(commentContent, authorNickname, targetType, postID, replyID, likesCount, isDeleted) values('³o¬OYoroªº¯d¨¥', 'Yoro', 'Posts', 1, null, 10, 0);
-
-
 select * from Comments;
+
+
+/*§R°£¥Î*/
 drop table Comments;
+drop table Replies;
+drop table Posts;
+drop table Sboards;
+drop table Mboards;
+drop table Forummembers;
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*¥H¤U©|µL§@¥Î*/
 /*²Ä¤G¶¥¬q*/
 
 
