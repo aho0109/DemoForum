@@ -1,5 +1,12 @@
-進入點：http://localhost:8085/allPosts-google.html  
-SQL Server指令如附檔  
+## 執行  
+預設SQL連線資料(如需修改可訪問`DemoForum/src/main/resources/application.properties`)  
+```
+spring.datasource.username=stargazer
+spring.datasource.password=P@ssw0rd
+```
+起始資料SQL Server指令如附檔   
+找到並執行 `DemoForum/src/main/java/com/joyfulgarden/JoyfulGardenSpringBootProjectApplication.java`
+專案進入點：http://localhost:8085/allPosts-google.html  
 
 ## 環境
 前端：html配合cdn引入的方式使用Vue框架  
